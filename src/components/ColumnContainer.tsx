@@ -12,7 +12,7 @@ const ColumnContainer: React.FC<ColumnProps> = ({ status, children }) => {
   return (
     <div
       ref={setNodeRef}
-      className='bg-gray-100 p-4 rounded flex flex-col min-h-[200px]'
+      className='bg-gray-200 p-4 rounded-xl flex flex-col min-h-[200px]'
     >
       {children}
     </div>

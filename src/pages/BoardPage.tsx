@@ -81,7 +81,7 @@ const BoardPage: React.FC = () => {
   };
 
   if (bLoad || tLoad) return <Loader size={24} />;
-  if (!board) return <p>Дошка не знайдена</p>;
+  if (!board) return <p>Board is not found</p>;
 
   const openCreate = () => {
     setActiveTask(undefined);
@@ -94,9 +94,7 @@ const BoardPage: React.FC = () => {
   };
 
   const handleDelete = async (task: ITask) => {
-    if (confirm('Видалити задачу?')) {
-      await deleteTask({ taskId: task._id }).unwrap();
-    }
+    await deleteTask({ taskId: task._id }).unwrap();
   };
 
   const handleConfirm = async (data: {
@@ -115,14 +113,14 @@ const BoardPage: React.FC = () => {
 
   return (
     <>
-      <div className='max-w-5xl mx-auto p-4'>
-        <h1 className='text-3xl font-bold mb-6'>{board.title}</h1>
+      <div className='mx-auto p-4'>
+        <h1 className='text-3xl font-bold mb-6 text-center'>{board.title}</h1>
         <DndContext
           sensors={sensors}
           collisionDetection={closestCenter}
           onDragEnd={handleDragEnd}
         >
-          <div className='grid grid-cols-3 gap-6'>
+          <div className='grid grid-cols-3 gap-8'>
             {(['todo', 'in_progress', 'done'] as TaskStatus[]).map((status) => (
               <SortableContext
                 key={status}
@@ -130,7 +128,7 @@ const BoardPage: React.FC = () => {
                 strategy={verticalListSortingStrategy}
               >
                 <ColumnContainer status={status}>
-                  <h2 className='text-xl font-semibold mb-4'>
+                  <h2 className='text-2xl font-semibold mb-4'>
                     {status === 'todo'
                       ? 'To Do'
                       : status === 'in_progress'
@@ -158,7 +156,7 @@ const BoardPage: React.FC = () => {
         <TaskModal
           open
           onOpenChange={(open) => !open && setModalMode(null)}
-          title={modalMode === 'create' ? 'Нова задача' : 'Редагування задачі'}
+          title={modalMode === 'create' ? 'Create task' : 'Edit task'}
           initialData={modalMode === 'edit' ? activeTask : undefined}
           onConfirm={handleConfirm}
         />

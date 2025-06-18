@@ -32,27 +32,31 @@ const TaskCard: React.FC<TaskCardProps> = ({
       {...listeners}
       className='bg-white p-4 rounded shadow relative cursor-grab'
     >
-      <h3 className='font-semibold'>{task.title}</h3>
-      {task.description && (
-        <p className='text-sm text-gray-600 mt-1'>{task.description}</p>
-      )}
+      <div className='flex flex-col gap-3 mb-10 rounded-b-xl'>
+        <h3 className='font-semibold text-xl'>{task.title}</h3>
+        {task.description && (
+          <p className='text-lg text-gray-600 mt-1 truncate'>
+            {task.description}
+          </p>
+        )}
+      </div>
 
-      <div className='absolute top-2 right-2 flex space-x-1'>
+      <div className='absolute bottom-2 right-2 flex space-x-2 '>
         <button
           onPointerDown={stop}
           onClick={() => onEdit(task)}
-          className='p-1 hover:bg-gray-200 rounded'
+          className='p-2 hover:bg-green-200 rounded-full'
           aria-label='Edit'
         >
-          <Pencil1Icon />
+          <Pencil1Icon height={24} width={24} />
         </button>
         <button
           onPointerDown={stop}
           onClick={() => onDelete(task)}
-          className='p-1 hover:bg-gray-200 rounded'
+          className='p-2 hover:bg-green-200 rounded-full'
           aria-label='Delete'
         >
-          <TrashIcon />
+          <TrashIcon height={24} width={24} />
         </button>
       </div>
     </div>

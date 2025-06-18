@@ -26,17 +26,17 @@ const SearchBoard = () => {
       <div className='relative'>
         <div className='flex gap-2'>
           <ComboboxInput
-            className='flex-1 p-2 border rounded focus:outline-none'
-            placeholder='ID або назва дошки…'
+            className='flex-1 p-5 text-xl border rounded-2xl focus:outline-none'
+            placeholder='Enter a board ID or Title here…'
             onChange={(e) => setQuery(e.currentTarget.value)}
             displayValue={(b: IBoard) => b?.title || b?._id || ''}
           />
-          <ComboboxButton className='px-4 py-2 bg-blue-600 text-white rounded disabled:opacity-50'>
+          <ComboboxButton className='px-10 py-2 bg-green-600 hover:bg-white text-white hover:text-black hover:border-1 text-xl rounded-2xl disabled:opacity-50'>
             {isLoading ? <Loader size={20} /> : 'Load'}
           </ComboboxButton>
         </div>
 
-        {isError && <p className='text-red-500 mt-1'>Помилка пошуку</p>}
+        {isError && <p className='text-red-500 mt-1'>Search mistake</p>}
 
         <Transition
           as={Fragment}
@@ -46,7 +46,9 @@ const SearchBoard = () => {
         >
           <ComboboxOptions className='absolute mt-1 w-full bg-white border rounded max-h-60 overflow-auto z-20'>
             {boards.length === 0 && query !== '' ? (
-              <div className='p-2 text-gray-500'>Нічого не знайдено.</div>
+              <div className='p-2 text-gray-500'>
+                No boards found, try another search
+              </div>
             ) : (
               boards.map((board) => (
                 <ComboboxOption
