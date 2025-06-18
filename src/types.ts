@@ -23,3 +23,10 @@ export interface LoaderProps {
   color?: string;
   className?: string;
 }
+
+export interface TaskCardProps {
+  task: ITask;
+  index: number;
+  onEdit: (task: ITask) => void;
+  onDelete: (task: ITask) => void;
+}
