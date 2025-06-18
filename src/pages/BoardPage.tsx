@@ -113,7 +113,7 @@ const BoardPage: React.FC = () => {
 
   return (
     <>
-      <div className='mx-auto p-4'>
+      <div className='mx-auto p-4 min-w-11/12 '>
         <h1 className='text-3xl font-bold mb-6 text-center'>{board.title}</h1>
         <DndContext
           sensors={sensors}

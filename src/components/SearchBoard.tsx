@@ -44,7 +44,7 @@ const SearchBoard = () => {
           leaveFrom='opacity-100'
           leaveTo='opacity-0'
         >
-          <ComboboxOptions className='absolute mt-1 w-full bg-white border rounded max-h-60 overflow-auto z-20'>
+          <ComboboxOptions className='absolute mt-1 w-full bg-white rounded max-h-60 overflow-auto z-20'>
             {boards.length === 0 && query !== '' ? (
               <div className='p-2 text-gray-500'>
                 No boards found, try another search

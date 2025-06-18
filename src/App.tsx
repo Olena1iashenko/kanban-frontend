@@ -6,7 +6,14 @@ export default function App() {
   return (
     <Routes>
       <Route path='/*' element={<Layout />}>
-        <Route index element={<p>Введіть ID або назву дошки вище</p>} />
+        <Route
+          index
+          element={
+            <p className='text-xl text-center mt-10'>
+              To start enter board ID or Title up here
+            </p>
+          }
+        />
         <Route path='boards/:id' element={<BoardPage />} />
       </Route>
       <Route path='*' element={<Navigate to='/' replace />} />

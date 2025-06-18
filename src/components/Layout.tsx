@@ -9,7 +9,7 @@ export default function Layout() {
           <SearchBoard />
         </div>
       </header>
-      <main className='flex-1 min-w-11/12 mx-auto p-4 bg-gradient-to-b from-amber-50 to-cyan-100'>
+      <main className='flex-1 w-full mx-auto bg-gradient-to-b from-amber-50 to-cyan-100'>
         <Outlet />
       </main>
     </div>
