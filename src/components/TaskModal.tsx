@@ -47,48 +47,50 @@ const TaskModal: React.FC<TaskModalProps> = ({
 
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
-      <Dialog.Overlay className='fixed inset-0 bg-black bg-opacity-30' />
-      <Dialog.Content className='fixed top-1/2 left-1/2 w-full max-w-md -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded shadow-lg'>
+      <Dialog.Overlay className='fixed inset-0 bg-black opacity-80' />
+      <Dialog.Content className='fixed top-1/2 left-1/2 w-full max-w-md -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-xl shadow-lg'>
         <div className='flex justify-between items-center mb-4'>
-          <Dialog.Title className='text-xl font-semibold'>{title}</Dialog.Title>
+          <Dialog.Title className='text-2xl font-semibold'>
+            {title}
+          </Dialog.Title>
           <Dialog.Close asChild>
             <button
               aria-label='Close'
-              className='p-1 hover:bg-gray-200 rounded'
+              className='p-2 hover:bg-green-200 rounded-full'
             >
-              <Cross1Icon />
+              <Cross1Icon width={20} height={20} />
             </button>
           </Dialog.Close>
         </div>
         <div className='space-y-4'>
           <label className='block'>
-            <span className='text-sm font-medium'>Title</span>
+            <span className='text-xl font-medium'>Title</span>
             <input
               value={form.title}
               onChange={(e) =>
                 setForm((f) => ({ ...f, title: e.target.value }))
               }
-              className='mt-1 block w-full p-2 border rounded'
+              className='mt-1 block w-full p-2 border rounded-lg text-md'
             />
           </label>
           <label className='block'>
-            <span className='text-sm font-medium'>Description</span>
+            <span className='text-xl font-medium'>Description</span>
             <textarea
               value={form.description}
               onChange={(e) =>
                 setForm((f) => ({ ...f, description: e.target.value }))
               }
-              className='mt-1 block w-full p-2 border rounded'
+              className='mt-1 block w-full p-2 border rounded-lg text-md'
             />
           </label>
           <label className='block'>
-            <span className='text-sm font-medium'>Status</span>
+            <span className='text-xl font-medium'>Status</span>
             <select
               value={form.status}
               onChange={(e) =>
                 setForm((f) => ({ ...f, status: e.target.value as any }))
               }
-              className='mt-1 block w-full p-2 border rounded'
+              className='mt-1 block w-full p-2 border rounded-lg text-md'
             >
               <option value='todo'>To Do</option>
               <option value='in_progress'>In Progress</option>
@@ -100,7 +102,7 @@ const TaskModal: React.FC<TaskModalProps> = ({
           <Dialog.Close asChild>
             <button
               onClick={handleConfirm}
-              className='px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700'
+              className='px-4 py-2 bg-green-600 hover:bg-white text-white hover:text-black hover:border-1 rounded-xl'
             >
               Confirm
             </button>

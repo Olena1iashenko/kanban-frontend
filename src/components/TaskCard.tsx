@@ -30,7 +30,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
       style={style}
       {...attributes}
       {...listeners}
-      className='bg-white p-4 rounded shadow relative cursor-grab'
+      className='bg-white p-6 rounded shadow relative cursor-grab'
     >
       <div className='flex flex-col gap-3 mb-10 rounded-b-xl'>
         <h3 className='font-semibold text-xl'>{task.title}</h3>
