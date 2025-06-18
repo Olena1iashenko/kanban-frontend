@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import Loader from './Loader';
 import type { IBoard } from '../types';
 
-export default function SearchBoard() {
+const SearchBoard = () => {
   const [query, setQuery] = useState('');
   const {
     data: boards = [],
@@ -70,4 +70,6 @@ export default function SearchBoard() {
       </div>
     </Combobox>
   );
-}
+};
+
+export default SearchBoard;
