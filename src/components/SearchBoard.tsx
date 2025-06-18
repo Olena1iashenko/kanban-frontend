@@ -7,7 +7,10 @@ import {
   ComboboxOption,
   Transition,
 } from '@headlessui/react';
-import { useSearchBoardsQuery } from '../redux/boardsApi';
+import {
+  useCreateBoardMutation,
+  useSearchBoardsQuery,
+} from '../redux/boardsApi';
 import { useNavigate } from 'react-router-dom';
 import Loader from './Loader';
 import type { IBoard } from '../types';
@@ -19,10 +22,20 @@ const SearchBoard = () => {
     isLoading,
     isError,
   } = useSearchBoardsQuery(query, { skip: !query });
+  const [createBoard, { isLoading: creating }] = useCreateBoardMutation();
   const navigate = useNavigate();
 
+  const handleSelect = async (board: IBoard | { create: true }) => {
+    if ('create' in board && board.create) {
+      const newBoard = await createBoard({ title: query }).unwrap();
+      navigate(`/boards/${newBoard._id}`);
+    } else {
+      navigate(`/boards/${(board as IBoard)._id}`);
+    }
+  };
+
   return (
-    <Combobox onChange={(board: IBoard) => navigate(`/boards/${board._id}`)}>
+    <Combobox onChange={handleSelect}>
       <div className='relative'>
         <div className='flex gap-2'>
           <ComboboxInput
@@ -32,7 +45,7 @@ const SearchBoard = () => {
             displayValue={(b: IBoard) => b?.title || b?._id || ''}
           />
           <ComboboxButton className='px-10 py-2 bg-green-600 hover:bg-white text-white hover:text-black hover:border-1 text-xl rounded-2xl disabled:opacity-50'>
-            {isLoading ? <Loader size={20} /> : 'Load'}
+            {isLoading || creating ? <Loader size={20} /> : 'Load'}
           </ComboboxButton>
         </div>
 
@@ -45,18 +58,25 @@ const SearchBoard = () => {
           leaveTo='opacity-0'
         >
           <ComboboxOptions className='absolute mt-1 w-full bg-white rounded max-h-60 overflow-auto z-20'>
-            {boards.length === 0 && query !== '' ? (
-              <div className='p-2 text-gray-500'>
-                No boards found, try another search
-              </div>
+            {query !== '' && boards.length === 0 ? (
+              <ComboboxOption
+                value={{ create: true }}
+                className={({ active }) =>
+                  `cursor-pointer select-none px-3 py-2 ${
+                    active ? 'bg-blue-100' : ''
+                  }`
+                }
+              >
+                Create new board “{query}”
+              </ComboboxOption>
             ) : (
               boards.map((board) => (
                 <ComboboxOption
                   key={board._id}
                   value={board}
-                  className={({ focus }) =>
+                  className={({ active }) =>
                     `cursor-pointer select-none px-3 py-2 ${
-                      focus ? 'bg-blue-100' : ''
+                      active ? 'bg-blue-100' : ''
                     }`
                   }
                 >

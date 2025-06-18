@@ -20,7 +20,7 @@ export const boardsApi = createApi({
       providesTags: ['Boards'],
     }),
     createBoard: builder.mutation<IBoard, Partial<IBoard>>({
-      query: (body) => ({ url: '/boards', method: 'post', data: body }),
+      query: (body) => ({ url: '/boards', method: 'post', body }),
       invalidatesTags: ['Boards'],
     }),
     updateBoard: builder.mutation<

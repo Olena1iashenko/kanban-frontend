@@ -33,7 +33,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
       className='bg-white p-6 rounded shadow relative cursor-grab'
     >
       <div className='flex flex-col gap-3 mb-10 rounded-b-xl'>
-        <h3 className='font-semibold text-xl'>{task.title}</h3>
+        <h3 className='font-semibold text-xl  truncate'>{task.title}</h3>
         {task.description && (
           <p className='text-lg text-gray-600 mt-1 truncate'>
             {task.description}
