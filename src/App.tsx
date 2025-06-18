@@ -1,11 +1,15 @@
-import './App.css';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import BoardPage from './pages/BoardPage';
+import Layout from './components/Layout';
 
-function App() {
+export default function App() {
   return (
-    <>
-      <p className='read-the-docs'>Hello world </p>
-    </>
+    <Routes>
+      <Route path='/*' element={<Layout />}>
+        <Route index element={<p>Введіть ID або назву дошки вище</p>} />
+        <Route path='boards/:id' element={<BoardPage />} />
+      </Route>
+      <Route path='*' element={<Navigate to='/' replace />} />
+    </Routes>
   );
 }
-
-export default App;
